@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/girish1455/handwritten_digit_mlops_project.git'
+                git 'https://github.com/girish1455/handwritten-digit-mlops.git'
             }
         }
 
