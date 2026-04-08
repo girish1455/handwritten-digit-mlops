@@ -5,20 +5,20 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'python -m pip install --upgrade pip'
-                bat 'python -m pip install -r requirements.txt'
+                bat '"C:\\Users\\giris\\miniconda3\\python.exe" -m pip install --upgrade pip'
+                bat '"C:\\Users\\giris\\miniconda3\\python.exe" -m pip install -r requirements.txt'
             }
         }
 
         stage('Train Model') {
             steps {
-                bat 'python src/train.py'
+                bat '"C:\\Users\\giris\\miniconda3\\python.exe" src\\train.py'
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat 'python src/test_model.py'
+                bat '"C:\\Users\\giris\\miniconda3\\python.exe" src\\test_model.py'
             }
         }
 
