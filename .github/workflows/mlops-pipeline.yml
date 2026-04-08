@@ -1,0 +1,37 @@
+
+name: MLOps Pipeline
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Train Model
+      run: |
+        python src/train.py
+
+    - name: Run Tests
+      run: |
+        python src/test_model.py
+
+    - name: Build Docker Image
+      run: |
+        docker build -t digit-ml-api .
