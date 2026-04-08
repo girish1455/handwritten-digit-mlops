@@ -3,15 +3,10 @@ pipeline {
 
     stages {
 
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/girish1455/handwritten-digit-mlops.git'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
-                bat 'pip install -r requirements.txt'
+                bat 'python -m pip install --upgrade pip'
+                bat 'python -m pip install -r requirements.txt'
             }
         }
 
@@ -35,7 +30,8 @@ pipeline {
 
         stage('Run API Container') {
             steps {
-                bat 'docker run -d -p 8000:8000 digit-api'
+                bat 'docker rm -f digit-container || exit 0'
+                bat 'docker run -d -p 8000:8000 --name digit-container digit-api'
             }
         }
 
